@@ -1,5 +1,3 @@
-import string 
-
 class Literal:
     """A class representing a data structure that is a symbol of a logic sentence
     
@@ -16,12 +14,12 @@ class Literal:
     >>> literal = Literal('A', False)
     >>> literalString = literal.formula()
     """
-    
+
     def __init__(self, symbol: int, isNot: bool):
-        self.__symbol = symbol
-        self.__isNot = isNot
+        self.__symbol: int = symbol
+        self.__isNot: bool = isNot
     
-    def formula(self) -> string:
+    def formula(self) -> str:
         return self.__symbol
         
     def is_negative(self) -> bool:
@@ -44,12 +42,14 @@ class Clause:
     >>> string clauseString = clause.formula()
     """
     
+    __literals: list[Literal]
+
     def __init__(self, literals: list[Literal]):
-        self.__literals = literals
+        self.__literals: list[Literal] = literals
     
-    def formula(self) -> string:
+    def formula(self) -> str:
         clauseString = ""
-        for i in len(self.__literals):
+        for i in range(len(self.__literals)):
             if (self.__literals[i].is_negative() == True):
                 clauseString += '-'
             clauseString += self.__literals[i].formula()
@@ -58,9 +58,9 @@ class Clause:
         return clauseString
         
     def is_resolvable_with(self, otherClause) -> tuple[bool, int, int]:
-        for i in len(self.__literals):
-            for j in len(otherClause.__literals):
-                if (self.__literals[i].formula() == otherClause.__literals[j].formula() 
+        for i in range(len(self.__literals)):
+            for j in range(len(otherClause.__literals)):
+                if (self.__literals[i].formula() == otherClause.__literals[j].formula()
                     and self.__literals[i].is_negative() != otherClause.__literals[j].is_negative()):
                     return tuple[True, i, j]
         return tuple[False, 0, 0]
@@ -106,13 +106,13 @@ class CNFSentence:
     >>> sentence = CNFSentence({Clause, Clause})
     >>> string sentenceString = sentence.formula()
     """
-    
+
     def __init__(self, sentence: list[Clause]):
-        self.__sentence = sentence
+        self.__sentence: list[Clause] = sentence
     
-    def formula(self) -> string:
+    def formula(self) -> str:
         sentenceString = "("
-        for i in len(self.__sentence):
+        for i in range(len(self.__sentence)):
             sentenceString += self.__sentence[i].formula()
             if (i != len(self.__sentence) - 1):
                 sentenceString += ") AND ("
