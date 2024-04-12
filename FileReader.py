@@ -23,31 +23,31 @@ class CNFFileReader:
         self.__filename = filename
 
     def readSentence(self) -> CNFSentence:
-        newCNFSentence = list[Clause]
+        newCNFSentence = []
         with open(self.__filename, "r") as f:
             # Read the alpha
-            extra_line: str = f.readline()
+            extra_line: [] = f.readline()
             if (extra_line[0] == '-'):
-                extra_clause: Clause = {Literal(extra_line[1], True)}
+                extra_clause = Clause([Literal(ord(extra_line[1]), False)])
             else:
-                extra_clause: Clause = {Literal(extra_line[0], False)}
+                extra_clause = Clause([Literal(ord(extra_line[0]), False)])
             newCNFSentence.append(extra_clause)
 
             # Read the number of clauses in the sentence
-            num_of_clauses = f.read()
+            num_of_clauses = (int)(f.readline())
 
             # Read the clauses
             for i in range(0, num_of_clauses):
-                newClause = list[Literal]
+                newClause = []
                 line = f.readline()
                 for j in range(0, len(line)):
-                    if (line[j] != 'O' and line[j] != '-' 
-                        and line[j] != ' ' and line[j + 1] != 'R'):
+                    if (line[j] != 'O' and line[j] != '-' and line[j] != '\n'
+                        and line[j] != ' ' and line[j] != 'R'):
                         if (line[j - 1] == '-'):
-                            newLiteral = Literal(j, False)
+                            newLiteral = Literal(ord(line[j]), False)
                         else:
-                            newLiteral = Literal(j, True)
+                            newLiteral = Literal(ord(line[j]), True)
                         newClause.append(newLiteral)
-                newCNFSentence.append(newClause)
+                newCNFSentence.append(Clause(newClause))
             return CNFSentence(newCNFSentence)
     
