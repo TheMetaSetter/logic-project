@@ -24,7 +24,9 @@ def PL_Resolution(sentence: CNFSentence):
                         new_second_CNF.append(new_clause)
         if (len(temp_second_CNF) == 0):
             print("NO")
+            return
         if (stop == True):
             print("YES")
+            return
 
 
