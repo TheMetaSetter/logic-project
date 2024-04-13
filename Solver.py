@@ -25,22 +25,22 @@ def PL_Resolution(sentence: CNFSentence):
                         and is_duplicated(temp_first_CNF, new_clause) == False
                         and is_duplicated(new_second_CNF, new_clause) == False):
                         if (len(new_clause.__literals__()) == 0):
-                            big_string += "{}" + '\n'
+                            big_string += '\n' + "{}"
                             stop = True
                             break
                         else: 
-                            big_string += new_clause.formula() + '\n'
+                            big_string += '\n' + new_clause.formula()
                             new_second_CNF.append(new_clause)
         if (len(new_second_CNF) == 0):
-            print(len(new_second_CNF))
+            print(len(new_second_CNF), end = '')
             print("NO")
             return
         if (stop == True):
-            print(len(new_second_CNF))
+            print(len(new_second_CNF), end = '')
             print(big_string)
             print("YES")
             return
-        print(len(new_second_CNF))
+        print(len(new_second_CNF), end = '')
         print(big_string)
         if (first_iteration != True):
             for clause in temp_second_CNF:
