@@ -30,7 +30,7 @@ class CNFFileReader:
             if (extra_line[0] == '-'):
                 extra_clause = Clause([Literal(ord(extra_line[1]), False)])
             else:
-                extra_clause = Clause([Literal(ord(extra_line[0]), False)])
+                extra_clause = Clause([Literal(ord(extra_line[0]), True)])
             newCNFSentence.append(extra_clause)
 
             # Read the number of clauses in the sentence
@@ -44,10 +44,12 @@ class CNFFileReader:
                     if (line[j] != 'O' and line[j] != '-' and line[j] != '\n'
                         and line[j] != ' ' and line[j] != 'R'):
                         if (line[j - 1] == '-'):
-                            newLiteral = Literal(ord(line[j]), False)
-                        else:
                             newLiteral = Literal(ord(line[j]), True)
+                        else:
+                            newLiteral = Literal(ord(line[j]), False)
                         newClause.append(newLiteral)
-                newCNFSentence.append(Clause(newClause))
+                tempClause = Clause(newClause)
+                tempClause.reorder()
+                newCNFSentence.append(tempClause)
             return CNFSentence(newCNFSentence)
     
