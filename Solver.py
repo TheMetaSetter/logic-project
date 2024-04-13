@@ -15,6 +15,8 @@ def PL_Resolution(sentence: CNFSentence):
     temp_second_CNF = new_CNF_to_copy.__sentence__()
     while(True):
         for i in range(new_CNF_to_copy.__len__()):
+            if (stop == True):
+                break
             for j in range(sentence.__len__()):
                 is_resolvable, temp_i, temp_j = temp_second_CNF[i].is_resolvable_with(temp_first_CNF[j])
                 if (is_resolvable == True):
@@ -25,6 +27,7 @@ def PL_Resolution(sentence: CNFSentence):
                         if (len(new_clause.__literals__()) == 0):
                             big_string += "{}" + '\n'
                             stop = True
+                            break
                         else: 
                             big_string += new_clause.formula() + '\n'
                             new_second_CNF.append(new_clause)
