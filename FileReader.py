@@ -40,14 +40,15 @@ class CNFFileReader:
             for i in range(0, num_of_clauses):
                 newClause = []
                 line = f.readline()
-                for j in range(0, len(line)):
-                    if (line[j] != 'O' and line[j] != '-' and line[j] != '\n'
-                        and line[j] != ' ' and line[j] != 'R'):
-                        if (line[j - 1] == '-'):
-                            newLiteral = Literal(ord(line[j]), True)
-                        else:
-                            newLiteral = Literal(ord(line[j]), False)
-                        newClause.append(newLiteral)
+                j = 0
+                while (j < len(line)):
+                    if (line[j] == '-'):
+                        newLiteral = Literal(ord(line[j + 1]), True)
+                        j += 6
+                    else:
+                        newLiteral = Literal(ord(line[j]), False)
+                        j += 5
+                    newClause.append(newLiteral)
                 tempClause = Clause(newClause)
                 tempClause.reorder()
                 newCNFSentence.append(tempClause)
