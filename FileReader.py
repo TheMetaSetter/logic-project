@@ -27,11 +27,18 @@ class CNFFileReader:
         with open(self.__filename, "r") as f:
             # Read the alpha
             extra_line: [] = f.readline()
-            if (extra_line[0] == '-'):
-                extra_clause = Clause([Literal(ord(extra_line[1]), False)])
-            else:
-                extra_clause = Clause([Literal(ord(extra_line[0]), True)])
-            newCNFSentence.append(extra_clause)
+            j = 0
+            while (j < len(extra_line)):
+                if (extra_line[j] == ' '):
+                        j += 1
+                        continue
+                if (extra_line[j] == '-'):
+                    extra_clause = Clause([Literal(ord(extra_line[j + 1]), False)])
+                    j += 6
+                else:
+                    extra_clause = Clause([Literal(ord(extra_line[j]), True)])
+                    j += 5
+                newCNFSentence.append(extra_clause)
 
             # Read the number of clauses in the sentence
             num_of_clauses = (int)(f.readline())
@@ -42,6 +49,9 @@ class CNFFileReader:
                 line = f.readline()
                 j = 0
                 while (j < len(line)):
+                    if (line[j] == ' '):
+                        j += 1
+                        continue
                     if (line[j] == '-'):
                         newLiteral = Literal(ord(line[j + 1]), True)
                         j += 6
