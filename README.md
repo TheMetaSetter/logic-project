@@ -20,3 +20,7 @@ Report at least 5 test scenarios to demonstrate the program's validity (and henc
 ## Run this project
 - Run ```Solution.py``` if you want to test the algorithm.
 - You can change the file name by changing sentence = CNFFileReader("input.txt") in ```Solution.py``` 
+
+## Video demonstration
+You can follow the video in the link below to clone and run this project using GitHub Desktop.
+[https://youtu.be/C2TOGf_FZNs](https://youtu.be/C2TOGf_FZNs)
