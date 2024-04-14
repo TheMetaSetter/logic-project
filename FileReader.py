@@ -29,7 +29,9 @@ class CNFFileReader:
             extra_line: [] = f.readline()
             j = 0
             while (j < len(extra_line)):
-                if (extra_line[j] == ' '):
+                if ((extra_line[j] == ' ')
+                    or (extra_line[j] == 'O' and j != len(extra_line) - 1 and extra_line[j + 1] == 'R')
+                    or (extra_line[j] == 'R' and j != 0 and extra_line[j - 1] == 'O')):
                         j += 1
                         continue
                 if (extra_line[j] == '-'):
@@ -49,7 +51,9 @@ class CNFFileReader:
                 line = f.readline()
                 j = 0
                 while (j < len(line)):
-                    if (line[j] == ' '):
+                    if ((line[j] == ' ')
+                    or (line[j] == 'O' and j != len(line) - 1 and line[j + 1] == 'R')
+                    or (line[j] == 'R' and j != 0 and line[j - 1] == 'O')):
                         j += 1
                         continue
                     if (line[j] == '-'):
