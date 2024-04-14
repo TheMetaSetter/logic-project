@@ -1,7 +1,10 @@
-E
-5
-A OR B
--B OR C
--B OR D
--A OR E
--C OR E
+A
+18
+A OR B OR C OR D OR O OR P OR Q OR R
+-B
+-C
+-D
+-O
+-P
+-Q
+-R

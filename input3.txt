@@ -1,4 +1,4 @@
--C
+-A OR C
 6
 -B OR D
 A OR B OR C

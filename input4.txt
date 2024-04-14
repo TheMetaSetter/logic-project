@@ -1,6 +1,6 @@
--X
+-O
 4
--X OR Y
--Y
-Y OR -Z
-X OR -Y OR Z
+-O OR P
+-P
+P OR -R
+O OR -P OR R
