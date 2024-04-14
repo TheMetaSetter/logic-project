@@ -28,7 +28,6 @@ def PL_Resolution(sentence: CNFSentence):
                             big_string += '\n' + "{}"
                             stop = True
                             new_second_CNF.append(new_clause)
-                            break
                         else: 
                             big_string += '\n' + new_clause.formula()
                             new_second_CNF.append(new_clause)
