@@ -1,5 +1,5 @@
 A
-18
+8
 A OR B OR C OR D OR O OR P OR Q OR R
 -B
 -C
