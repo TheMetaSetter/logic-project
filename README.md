@@ -18,6 +18,7 @@ Report at least 5 test scenarios to demonstrate the program's validity (and henc
 ## Install dependencies
 - Inside the repo on your local machine, open the terminal and run ```pip install -r requirements.txt```.
 ## Run this project
+- Go to First Problem
 - Run ```Solution.py``` if you want to test the algorithm.
 - You can change the file name by changing sentence = CNFFileReader("input.txt") in ```Solution.py``` 
 
